@@ -1,0 +1,20 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: nestjs
+  description: nestjs for test
+  annotations:
+    backstage.io/kubernetes-id: demo
+    backstage.io/kubernetes-label-selector: "backstage.io/kubernetes-id=demo-nestjs"
+    backstage.io/techdocs-ref: dir:.
+    github.com/project-slug: https://github.com/HUIKUB/backstate-nestjs-demo
+  tags:
+  - nestjs
+  links:
+  - url: https://nestjs.com
+    title: Nestjs
+    type: website
+spec:
+  type: service
+  lifecycle: experimental
+  owner: HUIKUB
