@@ -5,8 +5,34 @@ import { ValidationPipe, INestApplication } from '@nestjs/common';
 import { apiReference } from '@scalar/nestjs-api-reference';
 import { Request, Response } from 'express';
 import * as fs from 'node:fs';
+import * as path from 'node:path';
+import { stringify as yamlStringify } from 'yaml';
 
-function createOpenApi(app: INestApplication): void {
+function writeOpenApiFiles(document: OpenAPIObject) {
+  const outDir = path.resolve(process.cwd(), 'openapi');
+  fs.mkdirSync(outDir, { recursive: true });
+
+  fs.writeFileSync(
+    path.join(outDir, 'openapi.json'),
+    JSON.stringify(document, null, 2),
+    'utf-8',
+  );
+
+  let yamlText: string;
+  try {
+    const result = (yamlStringify as (input: unknown) => string)(document);
+    if (typeof result !== 'string') {
+      throw new TypeError('yamlStringify did not return a string');
+    }
+    yamlText = result;
+  } catch (err) {
+    console.error('Failed to stringify OpenAPI document to YAML:', err);
+    yamlText = '';
+  }
+  fs.writeFileSync(path.join(outDir, 'openapi.yaml'), yamlText, 'utf-8');
+}
+
+function createOpenApi(app: INestApplication): OpenAPIObject {
   const config = new DocumentBuilder()
     .setTitle('API')
     .setDescription('Public API service')
@@ -14,7 +40,6 @@ function createOpenApi(app: INestApplication): void {
     .build();
 
   const document: OpenAPIObject = SwaggerModule.createDocument(app, config);
-  fs.writeFileSync('./openapi.json', JSON.stringify(document, null, 2));
 
   app
     .getHttpAdapter()
@@ -27,6 +52,8 @@ function createOpenApi(app: INestApplication): void {
       theme: 'purple',
     }),
   );
+
+  return document;
 }
 
 async function bootstrap() {
@@ -34,26 +61,23 @@ async function bootstrap() {
 
   app.enableCors();
   app.enableShutdownHooks();
-  app.useGlobalPipes(
-    new ValidationPipe({
-      whitelist: true,
-      forbidUnknownValues: false,
-      transform: true,
-    }),
-  );
+  app.useGlobalPipes(new ValidationPipe({ whitelist: true, transform: true }));
 
-  createOpenApi(app);
+  try {
+    const document = createOpenApi(app);
+    writeOpenApiFiles(document);
+  } catch (err: unknown) {
+    if (err instanceof Error) {
+      console.error('Failed to generate OpenAPI files:', err.message);
+      console.error(err.stack);
+    } else {
+      console.error('Failed to generate OpenAPI files:', String(err));
+    }
+  }
 
-  const port = Number(process.env.PORT) || 3000;
-  const host = process.env.HOST || '0.0.0.0';
-
-  await app.listen(port, host);
-  const baseUrl = await app.getUrl();
-  console.log(
-    `🚀 Server running at ${baseUrl}\n` +
-      `   • OpenAPI JSON:  ${baseUrl}/openapi.json\n` +
-      `   • Scalar (UI):   ${baseUrl}/reference\n`,
+  await app.listen(
+    Number(process.env.PORT) || 3000,
+    process.env.HOST || '0.0.0.0',
   );
 }
-
-bootstrap();
+void bootstrap();

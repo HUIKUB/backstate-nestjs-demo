@@ -1,0 +1,20 @@
+openapi: 3.1.0
+paths:
+  /:
+    get:
+      operationId: AppController_getHello
+      parameters: []
+      responses:
+        "200":
+          description: ""
+      tags:
+      - App
+info:
+  title: API
+  description: Public API service
+  version: 1.0.0
+  contact: {}
+tags: []
+servers: []
+components:
+  schemas: {}
