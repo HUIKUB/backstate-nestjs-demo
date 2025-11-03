@@ -7,7 +7,7 @@ metadata:
     backstage.io/kubernetes-id: demo
     backstage.io/kubernetes-label-selector: "backstage.io/kubernetes-id=demo-nestjs"
     backstage.io/techdocs-ref: dir:.
-    github.com/project-slug: https://github.com/HUIKUB/backstate-nestjs-demo
+    github.com/project-slug: HUIKUB/backstate-nestjs-demo
   tags:
   - nestjs
   links:
