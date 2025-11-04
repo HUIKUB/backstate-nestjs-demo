@@ -4,10 +4,10 @@ metadata:
   name: nestjs
   description: nestjs for test
   annotations:
+    github.com/project-slug: HUIKUB/backstate-nestjs-demo
     backstage.io/kubernetes-id: demo
     backstage.io/kubernetes-label-selector: backstage.io/kubernetes-id=demo-nestjs
     backstage.io/techdocs-ref: dir:.
-    github.com/project-slug: HUIKUB/backstate-nestjs-demo
   tags:
   - nestjs
   links:
@@ -25,10 +25,10 @@ metadata:
   name: HUIKUB-nginx
   description: nginx on kind
   annotations:
+    github.com/project-slug: HUIKUB/backstate-demo
     backstage.io/kubernetes-id: demo
     backstage.io/kubernetes-label-selector: backstage.io/kubernetes-id=demo-nginx
     backstage.io/techdocs-ref: dir:.
-    github.com/project-slug: HUIKUB/backstate-demo
   tags:
   - nginx
   links:
