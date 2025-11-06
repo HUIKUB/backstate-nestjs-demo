@@ -54,26 +54,25 @@ spec:
   type: openapi
   lifecycle: experimental
   owner: team-huikub
-  definition:
-    $text: |
-      openapi: 3.0.0
-      info:
-        title: HUIKUB Nginx Demo API
-        version: 1.0.0
-      servers:
-        - url: https://api.huikub.local
-      paths:
-        /health:
-          get:
-            summary: Health check
-            operationId: getHealth
-            responses:
-              '200':
-                description: OK
-        /nginx/info:
-          get:
-            summary: Get nginx info
-            operationId: getNginxInfo
-            responses:
-              '200':
-                description: nginx info returned
+  definition: |
+    openapi: 3.0.0
+    info:
+      title: HUIKUB Nginx Demo API
+      version: 1.0.0
+    servers:
+      - url: https://api.huikub.local
+    paths:
+      /health:
+        get:
+          summary: Health check
+          operationId: getHealth
+          responses:
+            '200':
+              description: OK
+      /nginx/info:
+        get:
+          summary: Get nginx info
+          operationId: getNginxInfo
+          responses:
+            '200':
+              description: nginx info returned
