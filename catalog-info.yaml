@@ -18,6 +18,8 @@ spec:
   type: service
   lifecycle: experimental
   owner: HUIKUB
+  consumesApis:
+  - huikub-nginx-api
 ---
 apiVersion: backstage.io/v1alpha1
 kind: Component
@@ -41,4 +43,37 @@ spec:
   lifecycle: experimental
   owner: HUIKUB
   providesApis:
-  - huikub-user-api
+  - huikub-nginx-api
+---
+apiVersion: backstage.io/v1alpha1
+kind: API
+metadata:
+  name: huikub-nginx-api
+  description: Simple nginx demo API
+spec:
+  type: openapi
+  lifecycle: experimental
+  owner: team-huikub
+  definition:
+    $text: |
+      openapi: 3.0.0
+      info:
+        title: HUIKUB Nginx Demo API
+        version: 1.0.0
+      servers:
+        - url: https://api.huikub.local
+      paths:
+        /health:
+          get:
+            summary: Health check
+            operationId: getHealth
+            responses:
+              '200':
+                description: OK
+        /nginx/info:
+          get:
+            summary: Get nginx info
+            operationId: getNginxInfo
+            responses:
+              '200':
+                description: nginx info returned
