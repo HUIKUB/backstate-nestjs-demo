@@ -1,39 +1,43 @@
+# demo-nginx.yaml
 apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: demo-nginx
+  namespace: default
+  labels:
+    app.kubernetes.io/name: demo-nginx
+    backstage.io/kubernetes-id: demo-nginx
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: demo-nginx
+      app.kubernetes.io/name: demo-nginx
+      backstage.io/kubernetes-id: demo-nginx
   template:
     metadata:
       labels:
-        app: demo-nginx
+        app.kubernetes.io/name: demo-nginx
+        backstage.io/kubernetes-id: demo-nginx
     spec:
-      automountServiceAccountToken: false
       containers:
       - name: nginx
-        image: nginx:1.27-alpine
+        image: nginx:1.25-alpine
         ports:
         - containerPort: 80
-        resources:
-          requests:
-            cpu: 100m
-            memory: 256Mi
-            ephemeral-storage: 2Gi
-          limits:
-            memory: 256Mi
 ---
 apiVersion: v1
 kind: Service
 metadata:
   name: demo-svc
+  namespace: default
+  labels:
+    app.kubernetes.io/name: demo-nginx
+    backstage.io/kubernetes-id: demo-nginx
 spec:
   type: NodePort
   selector:
-    app: demo-nginx
+    app.kubernetes.io/name: demo-nginx
+    backstage.io/kubernetes-id: demo-nginx
   ports:
   - port: 80
     targetPort: 80

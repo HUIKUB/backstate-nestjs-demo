@@ -28,7 +28,7 @@ metadata:
     github.com/project-slug: HUIKUB/backstate-demo
     backstage.io/kubernetes-id: demo
     backstage.io/kubernetes-label-selector: backstage.io/kubernetes-id=demo-nginx
-    backstage.io/techdocs-ref: dir:.
+    backstage.io/techdocs-ref: dir:./docs
   tags:
   - nginx
   links:

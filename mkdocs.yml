@@ -1,5 +1,5 @@
-site_name: HUIKUB Docs
-nav:
-- Home: index.md
+site_name: HUIKUB
 plugins:
 - techdocs-core
+nav:
+- Overview: index.md
