@@ -1,40 +1,34 @@
 apiVersion: v1
-kind: Service
-metadata:
-  name: postgres
-  labels:
-    app: postgres
-spec:
-  type: ClusterIP
-  ports:
-  - port: 5432
-    targetPort: 5432
-  selector:
-    app: postgres
+kind: Namespace
+metadata: { name: demo }
 ---
 apiVersion: apps/v1
-kind: Deployment
-metadata:
-  name: postgres
+kind: StatefulSet
+metadata: { name: postgres, namespace: demo }
 spec:
+  serviceName: postgres
   replicas: 1
-  selector:
-    matchLabels:
-      app: postgres
+  selector: { matchLabels: { app: postgres } }
   template:
-    metadata:
-      labels:
-        app: postgres
+    metadata: { labels: { app: postgres } }
     spec:
       containers:
-      - name: postgres
+      - name: db
         image: postgres:16
-        ports:
-        - containerPort: 5432
         env:
-        - name: POSTGRES_DB
-          value: mydb
-        - name: POSTGRES_USER
-          value: myuser
-        - name: POSTGRES_PASSWORD
-          value: mypassword
+        - { name: POSTGRES_PASSWORD, value: example }
+        ports: [ { containerPort: 5432 } ]
+        volumeMounts:
+        - { name: data, mountPath: /var/lib/postgresql/data }
+  volumeClaimTemplates:
+  - metadata: { name: data }
+    spec:
+      accessModes: [ "ReadWriteOnce" ]
+      resources: { requests: { storage: 10Gi } }
+---
+apiVersion: v1
+kind: Service
+metadata: { name: postgres, namespace: demo }
+spec:
+  selector: { app: postgres }
+  ports: [ { port: 5432, targetPort: 5432 } ]
