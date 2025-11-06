@@ -3,3 +3,5 @@ plugins:
 - techdocs-core
 nav:
 - Overview: index.md
+- Setup: setup.md
+- Deployment: deployment.md
