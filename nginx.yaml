@@ -13,6 +13,8 @@ spec:
     matchLabels:
       app.kubernetes.io/name: demo-nginx
       backstage.io/kubernetes-id: demo-nginx
+  consumesApis:
+  - huikub-user-api
   template:
     metadata:
       labels:

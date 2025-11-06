@@ -1,0 +1,22 @@
+apiVersion: backstage.io/v1alpha1
+kind: API
+metadata:
+  name: huikub-user-api
+  description: User management API for HUIKUB system
+spec:
+  type: openapi
+  lifecycle: production
+  owner: team-huikub
+  definition:
+    $text: |
+      openapi: 3.0.0
+      info:
+        title: User API
+        version: 1.0.0
+      paths:
+        /users:
+          get:
+            summary: Get all users
+            responses:
+              '200':
+                description: OK

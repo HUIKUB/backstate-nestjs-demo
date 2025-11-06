@@ -40,3 +40,5 @@ spec:
   type: service
   lifecycle: experimental
   owner: HUIKUB
+  providesApis:
+  - huikub-user-api
