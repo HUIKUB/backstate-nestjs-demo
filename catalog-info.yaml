@@ -27,7 +27,7 @@ metadata:
   name: HUIKUB-nginx
   description: nginx on kind
   annotations:
-    github.com/project-slug: HUIKUB/backstate-demo
+    github.com/project-slug: HUIKUB/backstate-nestjs-demo
     backstage.io/kubernetes-id: demo
     backstage.io/kubernetes-label-selector: backstage.io/kubernetes-id=demo-nginx
     backstage.io/techdocs-ref: url:https://github.com/HUIKUB/backstate-nestjs-demo/tree/main
