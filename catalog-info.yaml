@@ -32,6 +32,9 @@ metadata:
     backstage.io/kubernetes-id: demo
     backstage.io/kubernetes-label-selector: backstage.io/kubernetes-id=demo-nginx
     backstage.io/techdocs-ref: url:https://github.com/HUIKUB/backstate-nestjs-demo/tree/main
+    prometheus.io/service-name: staging
+    prometheus.io/rule: api_requests_per_second|endpoint
+    prometheus.io/alert: 'API High Latency'
     github.com/project-slug: HUIKUB/backstate-nestjs-demo
   tags:
   - nginx
