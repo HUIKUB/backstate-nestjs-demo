@@ -35,8 +35,8 @@ metadata:
     prometheus.io/service-name: staging
     prometheus.io/rule: up|job
     prometheus.io/alert: all
-    grafana/dashboard-selector: ""
-    grafana/alert-label-selector: ""
+    grafana/dashboard-selector: "tag:generated tag:test"
+    grafana/alert-label-selector: "tag:generated tag:test"
     grafana/overview-dashboard: "d/adpb5c7/nginx-overview?orgId=1"
     github.com/project-slug: HUIKUB/backstate-nestjs-demo
   tags:
