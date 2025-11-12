@@ -37,7 +37,7 @@ metadata:
     prometheus.io/alert: all
     grafana/dashboard-selector: "(tags @> 'my-service' || tags @> 'my-service-slo') && tags @> 'generated'"
     grafana/alert-label-selector: "(tags @> 'my-service' || tags @> 'my-service-slo') && tags @> 'generated'"
-    grafana/overview-dashboard: 'd/nginx_uid/nginx-overview?orgId=1&var-service=huikub'
+    grafana/overview-dashboard: 'd/adpb5c7/nginx-overview?orgId=1&var-service=huikub'
     github.com/project-slug: HUIKUB/backstate-nestjs-demo
   tags:
   - nginx
