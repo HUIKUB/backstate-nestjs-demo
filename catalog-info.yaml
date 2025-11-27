@@ -1,30 +1,6 @@
 apiVersion: backstage.io/v1alpha1
 kind: Component
 metadata:
-  name: nestjs
-  description: nestjs for test
-  annotations:
-    backstage.io/source-location: url:https://github.com/HUIKUB/backstate-nestjs-demo
-    backstage.io/kubernetes-id: demo
-    backstage.io/kubernetes-label-selector: backstage.io/kubernetes-id=demo-nestjs
-    backstage.io/techdocs-ref: dir:.
-    github.com/project-slug: HUIKUB/backstate-nestjs-demo
-  tags:
-  - nestjs
-  links:
-  - url: https://nestjs.com
-    title: Nestjs
-    type: website
-spec:
-  type: service
-  lifecycle: experimental
-  owner: HUIKUB
-  consumesApis:
-  - huikub-nginx-api
----
-apiVersion: backstage.io/v1alpha1
-kind: Component
-metadata:
   name: HUIKUB-nginx
   description: nginx on kind
   annotations:
@@ -38,6 +14,7 @@ metadata:
     grafana/dashboard-selector: "(tags @> 'generated') && (tags @> 'test')"
     grafana/alert-label-selector: "(tags @> 'generated') && (tags @> 'test')"
     grafana/overview-dashboard: "d/adpb5c7/nginx-overview?orgId=1"
+    backstage.io/kibana-dashboard-url: http://localhost:5601/app/dashboards#/view/abc123
     github.com/project-slug: HUIKUB/backstate-nestjs-demo
   tags:
   - nginx
