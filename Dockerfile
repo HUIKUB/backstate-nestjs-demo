@@ -1,6 +1,6 @@
 FROM node:20-alpine
 
-RUN apk update && apk upgrade --no-cache
+RUN apk update && apk upgrade --no-cache && apk add curl
 
 WORKDIR /app
 
