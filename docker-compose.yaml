@@ -56,3 +56,5 @@ services:
 networks:
   poc-backstage:
     driver: bridge
+    external: true
+    name: poc-backstage
