@@ -136,6 +136,16 @@ spec:
         env:
         - name: ELASTICSEARCH_HOSTS
           value: http://elasticsearch:9200
+        - name: ELASTICSEARCH_USERNAME
+          value: "elastic"
+        - name: ELASTICSEARCH_PASSWORD
+          value: "changeme"
+        - name: SERVER_NAME
+          value: "kibana"
+        - name: xpack.security.enabled
+          value: "false"
+        - name: xpack.encryptedSavedObjects.encryptionKey
+          value: "something_at_least_32_characters"
 ---
 apiVersion: v1
 kind: Service
