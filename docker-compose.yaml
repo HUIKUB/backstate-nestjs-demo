@@ -9,6 +9,13 @@ services:
     ports:
       - "9200:9200"
 
+  elasticsearch-exporter:
+    image: quay.io/prometheuscommunity/elasticsearch-exporter:latest
+    ports:
+      - "9114:9114"
+    environment:
+      - ES_URI=http://elasticsearch:9200
+
   kibana:
     image: docker.elastic.co/kibana/kibana:8.14.0
     environment:
@@ -17,6 +24,15 @@ services:
       - "5601:5601"
     depends_on:
       - elasticsearch
+
+  prometheus:
+    image: prom/prometheus
+    ports:
+      - "9090:9090"
+    volumes:
+      - ./prometheus.yml:/etc/prometheus/prometheus.yml
+    command:
+      - "--config.file=/etc/prometheus/prometheus.yml"
 
   nestjs:
     build:
