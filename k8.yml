@@ -264,7 +264,7 @@ spec:
       - name: grafana
         image: grafana/grafana:10.2.3
         ports:
-        - containerPort: 3000
+        - containerPort: 3002
         resources:
           requests:
             memory: "128Mi"
@@ -293,5 +293,5 @@ spec:
     app: grafana
   ports:
   - protocol: TCP
-    port: 3000
-    targetPort: 3000 F
+    port: 3002
+    targetPort: 3002
