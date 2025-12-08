@@ -339,6 +339,7 @@ metadata:
   name: backstage-poc
   namespace: backstage
 spec:
+  type: LoadBalancer
   selector:
     app: backstage-poc
   ports:
