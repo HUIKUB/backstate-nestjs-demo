@@ -317,6 +317,7 @@ spec:
       containers:
       - name: backstage-poc
         image: esb-backstage-portal-backend:latest
+        imagePullPolicy: Never
         ports:
         - containerPort: 7007
         resources:
