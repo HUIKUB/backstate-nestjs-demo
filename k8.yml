@@ -117,10 +117,10 @@ spec:
         app: kibana
     spec:
       automountServiceAccountToken: false
-      initContainers:
-      - name: wait-for-elasticsearch
-        image: busybox
-        command: [ 'sh', '-c', 'until nc -z elasticsearch 9200; do echo waiting for elasticsearch; sleep 5; done;' ]
+      # initContainers:
+      # - name: wait-for-elasticsearch
+      #   image: busybox
+      #   command: [ 'sh', '-c', 'until nc -z elasticsearch 9200; do echo waiting for elasticsearch; sleep 5; done;' ]
       containers:
       - name: kibana
         image: docker.elastic.co/kibana/kibana:8.14.0
