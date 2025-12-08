@@ -20,6 +20,10 @@ spec:
         app: elasticsearch
     spec:
       automountServiceAccountToken: false
+      initContainers:
+      - name: wait-for-elasticsearch
+        image: busybox
+        command: [ 'sh', '-c', 'until nc -z elasticsearch 9200; do echo waiting for elasticsearch; sleep 5; done;' ]
       containers:
       - name: elasticsearch
         image: docker.elastic.co/elasticsearch/elasticsearch:8.14.0
@@ -124,13 +128,11 @@ spec:
         - containerPort: 5601
         resources:
           requests:
-            memory: "128Mi"
-            cpu: "100m"
-            ephemeral-storage: "256Mi"
-          limits:
             memory: "512Mi"
-            cpu: "500m"
-            ephemeral-storage: "1Gi"
+            cpu: "250m"
+        limits:
+          memory: "1Gi"
+          cpu: "500m"
         env:
         - name: ELASTICSEARCH_HOSTS
           value: http://elasticsearch:9200
